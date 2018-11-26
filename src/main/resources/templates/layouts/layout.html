@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en"
+        xmlns:th="http://www.thymeleaf.org"
+        th:lang="${#locale.language}"
+        xmlnl:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title layout:title-pattern="$LAYOUT_TITLE - $CONTENT_TITLE">[[#{|page.layout.title|}]]</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"/> 
+</head>
+<body>
+
+    <div class="root">
+        <div class="bg">
+            <div class="background1"></div>
+            <div class="background2"></div>        
+        </div>
+    
+        <div class="container1">
+            <div class="header-content">
+                <div class="page-info">
+                    <div class="page-name">
+                    	<div class="titulo">
+                    		<h1 th:text="#{page.layout.header.title}">[[#{|page.layout.header.title|}]]</h1>
+                    		<nav class="navbar navbar-expand-lg navbar-dark primary-color navOpciones">
+						      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+						        <ul class="navbar-nav mr-auto">
+						          <li class="nav-item active">
+						            <a class="nav-link waves-effect waves-light" th:href="@{'/index'}">[[#{|page.layout.nav.opciones.nivel1.inicio|}]]
+						              <span class="sr-only">(current)</span>
+						            </a>
+						          </li>							          
+						          <li class="nav-item dropdown">
+						            <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">[[#{|page.layout.nav.opciones.nivel1.consultas|}]]</a>
+						            <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+						              <a class="dropdown-item waves-effect waves-light" th:href="@{'/dates'}" target="_blank">[[#{|page.layout.nav.opciones.nivel2.consultas.xfechas|}]]</a>
+						              <a class="dropdown-item waves-effect waves-light" th:href="@{'/index'}" target="_blank">[[#{|page.layout.nav.opciones.nivel2.consultas.xexcepcion|}]]</a>
+						              <a class="dropdown-item waves-effect waves-light" th:href="@{'/index'}" target="_blank">[[#{|page.layout.nav.opciones.nivel2.consultas.xvista|}]]</a>
+						            </div>
+						          </li>
+						        </ul>							        
+						      </div>
+							</nav>
+	                	</div>
+                    </div>
+                    
+	                <div class="logo-content">
+	                	<div>
+	                		<img th:src="@{/images/logo_blanco_bcs.png}" alt="memorynotfound logo" class="logo"/>
+	                		<div id="myClock" class="mx-auto reloj"></div>
+	                	</div>	                	
+	                	
+	                </div>
+	                
+                    <th:block th:replace="fragments/header :: header" />                    
+                </div>
+                     
+            </div>
+        
+            <div class="content">
+                <div class="content1">                     
+                    <th:block layout:fragment="content" />
+                </div>
+            </div>
+            
+            <div class="footer">
+    			<th:block th:replace="fragments/footer :: footer" />
+            </div>
+        </div>  
+    </div>    
+    
+</body>
+</html>

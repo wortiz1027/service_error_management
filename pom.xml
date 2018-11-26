@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>co.com.service.management</groupId>
+	<artifactId>service_error_management</artifactId>
+	<version>1.0</version>
+	<packaging>jar</packaging>
+
+	<name>service_error_management</name>
+	<description>Aplicacion que permite gestional la informacion de los errores presentes en el programa que lo invoque el servicio rest</description>
+	
+	<!-- 
+        Informacion de la empresa que implementa el proyecto
+	  -->
+	  <organization>
+	    <name>Soaint Software</name>
+	    <url>http://www.soaint.com/</url>
+	  </organization>
+	  
+	  <!-- 
+	        Informacion de la licencia del proyecto
+	  -->
+	  <licenses>
+	    <license>
+	      <name>Apache License, Version 2.0</name>
+	      <url>https://www.apache.org/licenses/LICENSE-2.0.txt</url>
+	      <distribution>repo</distribution>
+	      <comments>A business-friendly OSS license</comments>
+	    </license>
+	  </licenses>
+	  
+	  <!-- 
+	        Informacion de los desarrolladores que intervienen en el proceso
+	  -->
+	  <developers>
+	    <developer>
+	      <id>wortiz</id>
+	      <name>Wilman Ortiz</name>
+	      <email>wortiz@soaint.com</email>
+	      <url>http://www.soaint.com/</url>
+	      <organization>Developer</organization>
+	      <organizationUrl>http://www.soaint.com/</organizationUrl>
+	      <roles>
+	        <role>Arquitecto</role>
+	        <role>Desarrollador</role>
+	      </roles>
+	      <timezone>America/Bogota</timezone>
+	      <properties>
+	        <picture>http://soaint.com/wp-content/uploads/2017/05/logo-soaint.png</picture>
+	      </properties>
+	    </developer>
+	  </developers>
+	  
+	  <!-- 
+	        Informacion del repositorio donde se almacenan los fuentes
+	  -->
+	  <scm>
+	    <url>https://gitlab.com/wortiz1027/bpm_credit_app</url>
+	    <connection>scm:git:https://gitlab.com/wortiz1027/bpm_credit_app.git</connection>
+	    <developerConnection>scm:git:https://gitlab.com/wortiz1027/bpm_credit_app.git</developerConnection>
+	    <tag>master</tag>
+	  </scm>
+	
+	<!-- 
+	        Informacion del manejador de bugs
+	  -->
+	  <issueManagement>
+	    <system>gitlab</system>
+	    <url>https://gitlab.com/wortiz1027/bpm_credit_app/issues</url>
+	  </issueManagement>
+		
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.1.0.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<oracle.version>12.2.0.1</oracle.version>
+		<swagger.version>2.9.2</swagger.version>
+	</properties>
+
+	<dependencies>
+		<!-- Aspectos -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
+		</dependency>
+		
+		<!-- Repositorios -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-amqp</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+		
+		<!-- Rest -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-rest</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-hateoas</artifactId>
+		</dependency>
+		
+		<!-- Notificaciones -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-mail</artifactId>
+		</dependency>
+		
+		<!-- Web -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+		</dependency>
+		
+		<!-- Test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		
+		<!-- Oracle JDBC driver -->
+        <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc8</artifactId>
+            <version>${oracle.version}</version>
+        </dependency>
+        
+        <!-- Swagger -->
+        <dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${swagger.version}</version>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>

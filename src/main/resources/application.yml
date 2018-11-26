@@ -1,0 +1,90 @@
+# +-----------------------------------------------------
+# |         SERVER CONFIG
+# +-----------------------------------------------------
+server:
+  port: 8888
+  servlet:
+    context-path: /errorservice
+    session:
+      cookie:
+        name: UISESSION
+
+# +-----------------------------------------------------
+# |         DATASOURCE CONFIG
+# +-----------------------------------------------------
+spring:
+  application:
+    name: errorservice
+  profiles:
+    active:
+      - development
+      - quality
+      - production
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    database: ORACLE
+    open-in-view: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        cache:
+          use_second_level_cache: false
+          use_query_cache: false
+        generate_statistic: true
+        naming-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:XE
+    driver-class-name: oracle.jdbc.OracleDriver
+    username: systemerrors
+    password: systemerrors
+    platform: ORACLE
+    hikari:
+      data-source-properties:
+        cachePrepStmts: true
+        useServerPrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useLocalSessionState: true
+        useLocalTransactionState: true
+        rewriteBatchedStatements: true
+        cacheResultSetMetadata: true
+        cacheServerConfiguration: true
+        elideSetAutoCommits: true
+        maintainTimeStats: false
+      pool-name: mypoolconection
+      connection-timeout: 60000
+      maximum-pool-size: 5
+  jmx:
+    default-domain: startertest       
+  jackson:
+    serialization:
+      indent-output: true
+  thymeleaf:
+    cache: false
+    check-template: false
+    check-template-location: true
+    servlet:
+      content-type: text/html
+    enabled: true
+    encoding: UTF-8
+    mode: HTML
+    prefix: classpath:/templates/
+    suffix: .html
+    reactive:
+      max-chunk-size: 8142
+  messages:
+    basename: i18n/messages     
+# +-----------------------------------------------------
+# |         LOGGIN CONFIG
+# +-----------------------------------------------------
+logging:
+  level:
+    org.springframework.web: DEBUG
+    org.springframework.data: DEBUG
+  pattern:
+    console: "%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+#  file: /tmp/errorservice.log  
